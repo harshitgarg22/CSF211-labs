@@ -47,8 +47,7 @@ int initialize_elements (JobList list)
 SeqList insert(Job j , SeqList sl)
 {
     int i;
-
-    for(i=sl.head; st[sl.head].next!=-1; i=st[sl.head].next){
+    for(i=sl.head; st[i].next!=-1; i=st[i].next){
         if(compare(j, st[st[i].next].ele) == LESSER){
             break;
         }
@@ -82,24 +81,24 @@ void copy_sorted_ele(SeqList s[3] , JobList ele)
 {
     int k=0;
     for(int i=3; i>0; --i){
-        for(int j=s[i].head; j=-1; j=st[j].next){
+        for(int j=s[i].head; j!=-1; j=st[j].next){
             ele[k] = st[j].ele;
         }
     }
 
 }
 
-void printlist(SeqList sl)
-{
-
-// Implement this function
-
+void printlist(SeqList sl) {
+    // Implement this function
+    // printJobList()
 }
 
 void printSeqList(SeqList s){
-    for(int i=s.head; i!=-1; i=st[i].next){
+    int i;
+    for(i = s.head; st[i].next != -1; i = st[i].next) {
         printJob(st[i].ele);
     }
+    printJob(st[i].ele);
 }
 
 void printJobList(JobList list, int size)
