@@ -27,18 +27,18 @@ int initialize_elements (JobList list)
 {
  int i; int size;
 
- printf("\n Enter the Number of Jobs :");
+ printf("\n Enter the Number of Jobs: ");
  scanf("%d", &size);
 
  for (i=0;i<size;i++)
  {
-  printf ("\nEnter job ID");
+  printf ("\nEnter job ID: ");
   scanf ("%d",&list[i].id);
-  printf ("Enter Priority (from 0 - 2)");
+  printf ("Enter Priority (from 0 - 2): ");
   scanf ("%d",&list[i].pri);
-  printf ("Execution Time");
+  printf ("Execution Time: ");
   scanf ("%d",&list[i].et);
-  printf ("Arrival Time");
+  printf ("Arrival Time: ");
   scanf ("%d",&list[i].at);
  }
  return size;
@@ -107,6 +107,44 @@ void printJobList(JobList list, int size)
         printJob(list[i]);
     }
 
+}
+
+void copy_pro(JobList list, int size){
+    for(int i=0; i<size; ++i){
+        list[i] = st[i].ele;
+    }
+}
+
+void insert_pro(Job jaub){
+    
+    int i;
+    
+    for(i=nextfreeloc; i<nextfreeloc; ++i){
+        if(compare(jaub, st[i].ele) == LESSER){
+            break;
+        }
+    }
+
+    for(int j=nextfreeloc-1; j>i; --j){
+        st[j+1] = st[j];
+        st[j] = st[j-1];
+    }
+
+    st[i].ele = jaub;
+
+    ++nextfreeloc;
+}
+
+void sort_but_pro(JobList list, int size){
+    for(int i=3; i>=1; --i){
+        for(int j=0; j<size; j++){
+            if(list[j].pri==i){
+                insert_pro(list[j]);
+            }
+        }
+    }
+
+    copy_pro(list, size);
 }
 
 void sortJobList(JobList list, int size)

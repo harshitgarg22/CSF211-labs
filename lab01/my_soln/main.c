@@ -9,7 +9,8 @@ int main(void)
  size = initialize_elements (list);
  printf("The Jobs waiting on CPU are:\n");
  printJobList(list, size);
- sortJobList(list, size);
+//  sortJobList(list, size);
+ sort_but_pro(list, size);
  printf("The Jobs after sorting are:\n");
  printJobList(list, size);
  return 0;
