@@ -4,6 +4,7 @@
 #include "storage.h"
 #include "compare.h"
 int nextfreeloc = 0;
+int priority = 0;
 Store st;
 
 void copy_sorted_ele(SeqList[] , JobList);
@@ -19,7 +20,7 @@ SeqList createlist()
 
 void printJob (Job j)
 {
-printf ("JOB ID = %d, Priority = %d, Arr time = %d, Arrival time = %d \n",j.id,j.pri,j.et,j.at);
+printf ("JOB ID = %d, Priority = %d, Execution time = %d, Arrival time = %d \n",j.id,j.pri,j.et,j.at);
 }
 
 
@@ -88,11 +89,6 @@ void copy_sorted_ele(SeqList s[3] , JobList ele)
 
 }
 
-void printlist(SeqList sl) {
-    // Implement this function
-    // printJobList()
-}
-
 void printSeqList(SeqList s){
     int i;
     for(i = s.head; st[i].next != -1; i = st[i].next) {
@@ -111,7 +107,11 @@ void printJobList(JobList list, int size)
 
 void copy_pro(JobList list, int size){
     for(int i=0; i<size; ++i){
-        list[i] = st[i].ele;
+        list[i].id = st[i].ele.id;
+        list[i].pri = st[i].ele.pri;
+        list[i].at = st[i].ele.at;
+        list[i].et = st[i].ele.et;
+
     }
 }
 
@@ -119,29 +119,33 @@ void insert_pro(Job jaub){
     
     int i;
     
-    for(i=nextfreeloc; i<nextfreeloc; ++i){
+    for(i=priority; i<nextfreeloc; ++i){
         if(compare(jaub, st[i].ele) == LESSER){
             break;
         }
     }
 
-    for(int j=nextfreeloc-1; j>i; --j){
+    for(int j = nextfreeloc-1; j>=i; --j){
         st[j+1] = st[j];
-        st[j] = st[j-1];
     }
 
-    st[i].ele = jaub;
+    st[i].ele.id = jaub.id;
+    st[i].ele.pri = jaub.pri;
+    st[i].ele.et = jaub.et;
+    st[i].ele.at = jaub.at;
+
 
     ++nextfreeloc;
 }
 
 void sort_but_pro(JobList list, int size){
-    for(int i=3; i>=1; --i){
+    for(int i=2; i>=0; --i){
         for(int j=0; j<size; j++){
             if(list[j].pri==i){
                 insert_pro(list[j]);
             }
         }
+        priority = nextfreeloc;
     }
 
     copy_pro(list, size);
@@ -150,12 +154,7 @@ void sort_but_pro(JobList list, int size){
 void sortJobList(JobList list, int size)
 {
  SeqList seq[3];
- seq[0] = createlist();
- seq[1] = createlist();
- seq[2] = createlist();
  insertelements (list, size, seq);
- printlist(seq[0]);   
- printlist(seq[1]);
- printlist(seq[2]);
+
  copy_sorted_ele (seq , list); 
 }
