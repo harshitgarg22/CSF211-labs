@@ -4,6 +4,7 @@
 #include "./Task.h"
 #include "./que.h"
 
+// mq.list[i] will have ith priority queue, i varies from 0 to num (num+1 possibilities)
 typedef struct{
     Queue *list;
     int len;
