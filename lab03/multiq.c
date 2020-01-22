@@ -6,7 +6,7 @@
 
 MultiQ createMQ(int num){
     MultiQ mq;
-    Queue *list = (Queue *) malloc(sizeof(Queue)*num);
+    Queue *list = (Queue *) malloc(sizeof(Queue)*(num+1));
 
     mq.list = list;
     mq.len = num;
