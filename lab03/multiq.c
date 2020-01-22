@@ -40,18 +40,14 @@ MultiQ delNextMQ(MultiQ mq){
     
     int i;
 
-    for (i = mq.len - 1; i >= 0; --i)
-    {
-        if (isEmptyQ(mq.list[i]) == false)
-        {
+    for (i = mq.len - 1; i >= 0; --i){
+        if (isEmptyQ(mq.list[i]) == false){
+            // mq.list[i] - highest priority queue not empty
+            // delete the front of mq.list[i] queue
+            mq.list[i] = delQ(mq.list[i]);
             break;
         }
     }
-
-    // mq.list[i] - highest priority queue not empty
-
-    // delete the front of mq.list[i] queue
-    mq.list[i] = delQ(mq.list[i]);
 
     return mq;
 }
