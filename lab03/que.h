@@ -4,14 +4,14 @@
 #include <stdbool.h>
 #include "./Element.h"
 
-typedef struct{
+typedef struct node{
     Element ele;
     struct node *next;
 }node;
 
 typedef struct {
-    struct node *head;
-    struct node *tail;
+    node *head;
+    node *tail;
 }Queue;
 
 Queue newQ();
