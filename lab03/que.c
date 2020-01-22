@@ -26,7 +26,7 @@ bool isEmptyQ(Queue q){
 
 Queue delQ(Queue q){
     if(q.head==NULL){
-        printf("ERROR Queue is empty!");
+        printf("ERROR Queue is empty!\n");
         exit(-1);
     }
 
@@ -48,19 +48,25 @@ Element front(Queue q){
 }
 
 Queue addQ(Queue q, Element e){
-    struct node* new_ele = (struct node *)malloc(sizeof(struct node *));
+    node* new_ele = (struct node *)malloc(sizeof(struct node *));
 
     new_ele->ele = e;
-    new_ele->next = q.tail->next;
- 
-    q.tail->next = new_ele;
-    q.tail = new_ele;
+    new_ele->next = NULL;
+    
+    if(q.tail!=NULL){
+        q.tail->next = new_ele;
+        q.tail = new_ele;
+    }
+
+    else{
+        q.head = q.tail = new_ele;
+    }
 
     return q;
 }
 
 int lengthQ(Queue q){
-    struct node *traverse = q.head;
+    node *traverse = q.head;
 
     int length = 0;
 
