@@ -17,15 +17,15 @@ Queue newQ(){
 
 bool isEmptyQ(Queue q){
     if(q.head==NULL){
-        return false;
+        return true;
     }
     else{
-        return true;
+        return false;
     }
 }
 
 Queue delQ(Queue q){
-    if(q.head==NULL){
+    if(isEmptyQ(q)==true){
         printf("ERROR Queue is empty!\n");
         exit(-1);
     }
@@ -33,6 +33,9 @@ Queue delQ(Queue q){
     struct node *temp = q.head;
     q.head = q.head->next;
     free(temp);
+    if(q.head==NULL){
+        q.tail = NULL;
+    }
 
     return q;
 }
