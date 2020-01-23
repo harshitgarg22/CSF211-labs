@@ -1,7 +1,9 @@
 #include<stdio.h>
 #include<ctype.h>
+#include <sys/time.h>   // for gettimeofday()
 
 #include "./multiq.h"
+
 
 // Number of Task inputs
 #define NUM 10
@@ -45,7 +47,29 @@ int main(int argc, char *argv[]){
     // Name of input file is passed as first argument
     FILE *input = fopen(argv[1], "r");
 
+    struct timeval t1, t2;
+    double elapsedTime;
+    // start timer
+    gettimeofday(&t1, NULL);
+
     MultiQ mq = loadData(input);
 
+    gettimeofday(&t2, NULL);
+
+    // compute and print the elapsed time in millisec
+    elapsedTime = (t2.tv_usec - t1.tv_usec) / 1000.0;
+    printf("Total time for loading Data is %fms.\n", elapsedTime);
+
+    elapsedTime = 0;
+    // start timer
+    gettimeofday(&t1, NULL);
+
+
     mq = testDel(mq, 5);
+    
+    gettimeofday(&t2, NULL);
+
+    // compute and print the elapsed time in millisec
+    elapsedTime = (t2.tv_usec - t1.tv_usec) / 1000.0;
+    printf("Total time for Deleting is %fms.\n", elapsedTime);
 }
