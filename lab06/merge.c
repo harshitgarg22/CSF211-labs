@@ -4,7 +4,7 @@ void merge(Element Ls1[], int sz1, Element Ls2[], int sz2, Element Ls[]){
     int i = 0, j = 0, k = 0;
 
     for(i = 0; j!=sz1 || k!=sz2; ++i){
-        if(Ls1[j].cgpa<=Ls2[k].cpga){
+        if(Ls1[j].cgpa<=Ls2[k].cgpa){
             Ls[i] = Ls1[j++];
         }   else{
             Ls[i] = Ls2[k++];
