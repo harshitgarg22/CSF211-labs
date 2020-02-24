@@ -3,7 +3,7 @@
 
 typedef struct Element{
     char *name;
-    int id;
+    long id;
 }Element;
 
 #endif
