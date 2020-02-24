@@ -3,6 +3,6 @@
 
 #include "./Element.h"
 
-void insertionSort(Element *Ls, int size);
+void insertionSort(Element *Ls, long size);
 
 #endif
