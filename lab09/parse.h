@@ -3,6 +3,6 @@
 
 #include <stdio.h>
 
-char **parse(FILE *finp);
+char **parse(FILE *finp, long *size);
 
 #endif
