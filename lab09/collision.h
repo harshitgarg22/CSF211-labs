@@ -3,4 +3,4 @@
 
 long collision(char **list, long len, long baseNumber, long tableSize);
 
-#endif COLLISION_H_INCLUDED
+#endif 
