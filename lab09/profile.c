@@ -17,7 +17,13 @@ void profile(char **list, long len){
     for(int i = 0; i < 6; ++i){
         for(int j = 0; j < 3; ++j){
             val[i][j] = collision(list, len, baseNumber[j][i], tableSize[j]);
-            printf("Collision for tableSize %d\tand baseNumber %d\t: %d ", baseNumber[j][i], tableSize[j], val[i][j]);
+            printf("\033[0;36mCollision for "); 
+            printf("\033[1;31mtableSize");
+            printf("\033[0;32m%*d\t", 10, tableSize[j]);
+            printf("\033[1;33mbaseNumber");
+            printf("\033[0;34m%*d\t", 10, baseNumber[j][i]);
+            printf("\033[1;35m: %d ", val[i][j]);
+            // printf("\033[1m");
             if(val[best_i][best_j] > val[i][j]){
                 best_i = i;
                 best_j = j;
